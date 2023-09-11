@@ -1,4 +1,5 @@
 # Capstone_Project
+Render URL : https://capstone-sandya.onrender.com
 
 ## Getting Started
 
@@ -81,6 +82,13 @@ The `--reload` flag will detect file changes and restart the server automaticall
 7. Test your endpoints with [Postman](https://getpostman.com).
    - Register 3 users - assign the a different role to each user.
    - Sign into each account and make note of the JWT.
+    ```bash
+    GET https://YOUR_DOMAIN/authorize?
+        audience=YOUR_AUDIENCE&
+        response_type=token&
+        client_id=YOUR_CLIENT_ID&
+        redirect_uri=https://callbackurl
+    ```
    - Create the postman collection Capdtone and add collection folder for each role. 
    - Right-clicking the collection folder for CastingAssistant,CastingDirector and ExecutiveProducer, navigate to the authorization tab, and including the JWT in the token field (you should have noted these JWTs).
    - Run the collection and correct any errors.

@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, abort, jsonify
+from flask import Flask, request, abort, jsonify,redirect
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from models import setup_db,Actor,Movie
@@ -23,13 +23,25 @@ def create_app(test_config=None):
     response.headers.add("Access-Control-Allow-Methods","GET,PUT,POST,DELETE,OPTIONS")
     return response
   
+  '''
+  End point to redirect to Auth0 for authentication
+  '''
   @app.route('/')
-  def get_greeting():
+  def get_login():
+    print("host:",request.host)
+    AUTH0_DOMAIN = os.environ.get('AUTH0_DOMAIN')
+    API_AUDIENCE = os.environ.get('API_AUDIENCE')
+    CLIENT_ID = os.environ.get('CLIENT_ID')
+    HOST = request.host
+    return redirect(f'https://{AUTH0_DOMAIN}/authorize?audience={API_AUDIENCE}&response_type=token&client_id={CLIENT_ID}&redirect_uri=https://{HOST}/callback',302)
+    
+    
+  @app.route('/callback')
+  def get_callback():
     excited = os.environ['EXCITED']
     greeting = "Hello" 
     if excited == 'true': greeting = greeting + "!!!!!"
     return greeting
-
 
   #Movies
   '''
@@ -260,6 +272,6 @@ def create_app(test_config=None):
 app = create_app()
 if __name__ == '__main__':
     app.run()
-    
+
 '''if __name__ == '__main__':
     APP.run(host='0.0.0.0', port=8080, debug=True)'''
