@@ -37,6 +37,16 @@ Run the shell scrip file to assign environment variables
 ```bash
 source setup.sh;
 ```
+or
+
+add the environment variables
+```bash
+export API_AUDIENCE="Capstone"
+export AUTH0_DOMAIN="auth0domain.us.auth0.com"
+export CLIENT_ID="4FjyUPdra01Bf2WFm8udcnRNav0XEAnZ"
+export DATABASE_PATH="postgresql://capstone_26y9_user:ePlMGtMa5ox3yy3NdCdXFCTxClBeRV26@localhost/capstone_26y9"
+
+```
 
 Each time you open a new terminal session, run:
 
